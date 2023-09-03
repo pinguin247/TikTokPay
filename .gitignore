@@ -3,9 +3,9 @@
 node_modules/
 
 # React Native
-tictokpay/ios/Pods/
-tictokpay/android/.gradle/
-tictokpay/android/app/build/
+tiktokpay/ios/Pods/
+tiktokpay/android/.gradle/
+tiktokpay/android/app/build/
 
 # Backend
 backend/node_modules/
