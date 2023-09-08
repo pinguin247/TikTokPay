@@ -14,6 +14,9 @@ export default function TabOneScreen() {
   return (
     <View style={globalStyles.container}>
       <ImageBackground style={styles.backgroundimage} source={require('../../assets/images/background.png')}>
+        <View style={{position:"absolute", marginLeft:220, marginTop:60}}>
+        <ImageBackground source={require('../../assets/images/card.png')}/>   
+        </View>
         <View style={styles.headerSection}>
           <Image source={require('../../assets/images/Logo.png')} />   
           <Text style={styles.title}>$245.00</Text>
@@ -34,9 +37,6 @@ export default function TabOneScreen() {
             </View>
           </View>
         </Card>
-
-
-         
          
       </ImageBackground>       
        <Card style={styles.transactionscard}>
