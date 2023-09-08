@@ -20,13 +20,31 @@ export default function TabOneScreen() {
         </View>
         <Card style={styles.card}>
           <View style={styles.iconRow}>
-          <IconButton icon="wallet" onPress={handlePress} color="red" size={32} />
-          <IconButton icon="qrcode" onPress={handlePress} color="red" size={32} />
-          <IconButton icon="bank-transfer" onPress={handlePress} color="red" size={32} /> 
+            <View style={{backgroundColor:"none", alignItems:"center"}}>
+              <IconButton icon="wallet" onPress={handlePress} color="red" size={32} />
+              <Text style={{color:"black", fontWeight:"400"}}>Top up</Text>
+            </View>
+            <View style={{backgroundColor:"none", alignItems:"center"}}>
+              <IconButton icon="qrcode" onPress={handlePress} color="red" size={32} />
+              <Text style={{color:"black", fontWeight:"400"}}>Scan/Pay</Text>
+            </View>
+            <View style={{backgroundColor:"none", alignItems:"center"}}>
+              <IconButton icon="bank-transfer" onPress={handlePress} color="red" size={32} /> 
+              <Text style={{color:"black", fontWeight:"400"}}>Transfer</Text>
+            </View>
           </View>
         </Card>
+
+
          
-      </ImageBackground>
+         
+      </ImageBackground>       
+       <Card style={styles.transactionscard}>
+          <View style={{backgroundColor:"none", justifyContent:"center"}}>
+            <Text style={styles.cardHeader}>Latest Transactions</Text>
+          </View>
+          <View style={styles.separator} />
+        </Card>
     </View>
   );
 }
@@ -57,6 +75,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 3,
+    paddingBottom:6
   },
   iconRow: {
     flexDirection: 'row',
@@ -64,5 +83,28 @@ const styles = StyleSheet.create({
     alignContent:'center',
     backgroundColor:'none',
     flex:1
+  },
+  transactionscard:{
+    top: 360,
+    position: 'absolute',
+    width: '90%',
+    alignSelf: 'center',
+    height:'50%',
+    padding:15,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+  },
+  cardHeader:{
+    color: '#000', // Color in React Native is specified using a string, e.g., 'black' or '#000'
+    fontSize: 22, // Font size is in numeric values, not pixels
+    lineHeight: undefined, // Line height is set automatically based on font size
+  },
+  separator: {
+    marginTop:15,
+    height: 1,
+    width: '100%',
+    backgroundColor:"rgba(57, 118, 132, 0.5)"
   },
 });
