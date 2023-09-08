@@ -4,6 +4,8 @@ import { Text, View } from '../../components/Themed';
 import globalStyles from '../../constants/styles';
 import { Card } from 'react-native-paper';
 import IconButton from '../../components/IconButton';
+import * as React from 'react';
+import { Link } from 'expo-router';
 
 export default function TabOneScreen() {
   const handlePress = () => {
@@ -25,6 +27,9 @@ export default function TabOneScreen() {
           <View style={styles.iconRow}>
             <View style={{backgroundColor:"none", alignItems:"center"}}>
               <IconButton icon="wallet" onPress={handlePress} color="red" size={32} />
+              <View style={{backgroundColor:"none", position:"absolute", top:36, left:37}}>
+                <Image source={require('../../assets/images/add.png')}/> 
+              </View>
               <Text style={{color:"black", fontWeight:"400"}}>Top up</Text>
             </View>
             <View style={{backgroundColor:"none", alignItems:"center"}}>
@@ -40,8 +45,11 @@ export default function TabOneScreen() {
          
       </ImageBackground>       
        <Card style={styles.transactionscard}>
-          <View style={{backgroundColor:"none", justifyContent:"center"}}>
-            <Text style={styles.cardHeader}>Latest Transactions</Text>
+        <View style={{backgroundColor:"none", flex:1,flexDirection:"row"}}>
+              <Text style={styles.cardHeader}>Latest Transactions</Text>     
+            <View style={{backgroundColor:"none", marginTop:6, marginLeft:80}}>
+              <Link style={styles.linkText} href="/two">View All</Link>
+            </View>
           </View>
           <View style={styles.separator} />
         </Card>
@@ -107,4 +115,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor:"rgba(57, 118, 132, 0.5)"
   },
+  linkText:{
+    color:"#FA6B99"
+  }
 });
