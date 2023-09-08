@@ -22,7 +22,7 @@ export default function TabLayout() {
       screenOptions={{
        tabBarActiveTintColor: 'rgba(57, 118, 132)',
        tabBarInactiveTintColor: 'rgba(57, 118, 132, 0.5)', 
-       tabBarStyle: { backgroundColor: 'white' },
+       tabBarStyle: { display: 'none'},
       }}>
       <Tabs.Screen
         name="index"
@@ -78,6 +78,52 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="transfer"
+        options={{
+          title: 'Transfer',
+          headerStyle: {
+            backgroundColor: 'white', // Change the top bar background color
+            height: 80,
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontSize: 20, // Change the font size
+            color: 'black', // Change the text color
+          },
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}  style={{ marginLeft: 10, marginTop: 7}} >
+              <FontAwesome name="chevron-left" size={20} color="rgb(57, 118, 132)" />
+            </TouchableOpacity>
+          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="topup"
+        options={{
+          title: 'Top Up',
+          headerStyle: {
+            backgroundColor: 'white', // Change the top bar background color
+            height: 80,
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontSize: 20, // Change the font size
+            color: 'black', // Change the text color
+          },
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}  style={{ marginLeft: 10, marginTop: 7}} >
+              <FontAwesome name="chevron-left" size={20} color="rgb(57, 118, 132)" />
+            </TouchableOpacity>
+          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
     </Tabs>
+
+    
   );
 }

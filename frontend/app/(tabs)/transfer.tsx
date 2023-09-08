@@ -4,10 +4,10 @@ import ListInfo from '../../components/ListInfo';
 import { Text, View } from '../../components/Themed';
 import globalStyles from '../../constants/styles';
 
-export default function TabTwoScreen() {
+export default function TransferScreen() {
   return (
     <View style={globalStyles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Transfer</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <ListInfo path="app/(tabs)/two.tsx" />
     </View>
