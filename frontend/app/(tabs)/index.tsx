@@ -1,5 +1,5 @@
 import { StyleSheet, Image, ImageBackground, ImageBackgroundBase } from 'react-native';
-import EditScreenInfo from '../../components/EditScreenInfo';
+import ListInfo from '../../components/ListInfo';
 import { Text, View } from '../../components/Themed';
 import globalStyles from '../../constants/styles';
 import { Card } from 'react-native-paper';
