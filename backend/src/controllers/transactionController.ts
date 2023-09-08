@@ -26,7 +26,7 @@ export const createTransaction = async (req: any, res: any) => {
 export const getTransactions = async (req: Request, res: Response) => {
   try {
       const { userId } = req.params;
-      const transactionsSnapshot = await db.collection('transactions').where('userId', '==', userId).get();
+      const transactionsSnapshot = await db.collection('transactions').where('senderId', '==', userId).get();
       
       const transactions: any[] = [];
       transactionsSnapshot.forEach(doc => {

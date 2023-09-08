@@ -8,5 +8,6 @@ const router = express.Router();
 export default (): express.Router => {
     users(router);
     transactions(router);
+    // wallets(router);
     return router;
 }
