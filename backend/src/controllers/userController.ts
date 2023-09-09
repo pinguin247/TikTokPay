@@ -1,18 +1,21 @@
-import db from '../utils/firebase';
+import { db } from '../utils/firebase';
 import { Request, Response } from 'express';
 
-export const createUser = async (req: any, res: any) => {
+export const createUser = async (req: Request, res: Response) => {
   try {
     const userRef = db.collection('users');
     const newUser = {
       email: req.body.email,
-      password: req.body.password // Need hashing here
+      password: req.body.password,
+      debitBalance: 0, // Need hashing here
+      creditBalance: 0
     };
     
     const addedUser = await userRef.add(newUser);
     res.status(201).json({ id: addedUser.id, ...newUser });
   } catch (error) {
-    res.status(500).send('Server Error');
+    console.log(error);
+    res.sendStatus(401);
   }
 };
 
@@ -28,6 +31,6 @@ export const getUser = async (req: Request, res: Response) => {
 
       return res.status(200).send({ id: userDoc.id, ...userDoc.data() });
   } catch (error) {
-      return res.status(500).send(error.message);
+      return res.status(500).send(error);
   }
 };

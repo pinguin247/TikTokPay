@@ -1,12 +1,15 @@
 import express from 'express';
-import userRoutes from './users';
-import transactionRoutes from './transactions';
-import walletRoutes from './wallets';
+import users from './users';
+import transactions from './transactions';
+import wallets from './wallets';
+import auth from './auth';
 
 const router = express.Router();
 
-router.use('/user', userRoutes);
-router.use('/transaction', transactionRoutes);
-router.use('/wallet', walletRoutes);
-
-export default router;
+export default (): express.Router => {
+    users(router);
+    auth(router);
+    transactions(router);
+    wallets(router);
+    return router;
+}
