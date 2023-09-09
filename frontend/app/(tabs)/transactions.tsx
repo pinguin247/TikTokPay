@@ -6,9 +6,14 @@ import { Text, View } from "../../components/Themed";
 import globalStyles from "../../constants/styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
+import {
+  transactionsDataAugust,
+  transactionsDataJuly,
+  transactionsDataSeptember,
+} from "../../constants/mockData";
 
 const data = {
-  months: ["AUG 2023", "SEP 2023", "OCT 2023"],
+  months: ["SEP 2023", "AUG 2023", "JUL 2023"],
 };
 
 export default function TransactionsScreen() {
@@ -33,7 +38,6 @@ export default function TransactionsScreen() {
             )}
           </TouchableOpacity>
         ))}
-        
       </View>
       <View></View>
       <View
@@ -41,23 +45,104 @@ export default function TransactionsScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-    <View style={styles.list}>
-      <Text style={styles.dateHeader}>03 September 2023</Text>
-        <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="200.00" date="03 Sep" />
-        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="03 Sep" />
-        <ListInfo icon="data-matrix-scan" transferAccount="To Chicken Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="03 Sep" />
-        <Text style={styles.dateHeader}>02 September 2023</Text>
-        <ListInfo icon="account-arrow-left" transferAccount="From Sarah" transferAction="Transfer" add={true} amount="50.00" date="02 Sep" />
-        <ListInfo icon="data-matrix-scan" transferAccount="To Duck Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="02 Sep" />
-        <Text style={styles.dateHeader}>01 September 2023</Text>
-        <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="100.00" date="01 Sep" />
-        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="01 Sep" />
-        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="01 Sep" />
-    </View>
+
+      {/* September */}
+      {selectedMonth === "SEP 2023" && (
+        <View style={styles.list}>
+          {transactionsMonthsFilters.Sep.map((sep_t_data) => (
+            <View key={sep_t_data.header}>
+              <Text style={styles.dateHeader}>{sep_t_data.header}</Text>
+              {transactionsDataSeptember.map((t_data) => {
+                if (t_data.date === sep_t_data.dateKey) {
+                  return (
+                    <ListInfo
+                      key={t_data.id}
+                      icon={t_data.icon}
+                      transferAccount={t_data.transferAccount}
+                      transferAction={t_data.transferAction}
+                      add={t_data.add}
+                      amount={t_data.amount.toFixed(2)}
+                      date={t_data.date}
+                    />
+                  );
+                }
+              })}
+            </View>
+          ))}
+        </View>
+      )}
+      {/* August */}
+      {selectedMonth === "AUG 2023" && (
+        <View style={styles.list}>
+          {transactionsMonthsFilters.Aug.map((aug_t_data) => (
+            <View key={aug_t_data.header}>
+              <Text style={styles.dateHeader}>{aug_t_data.header}</Text>
+              {transactionsDataAugust.map((t_data) => {
+                if (t_data.date === aug_t_data.dateKey) {
+                  return (
+                    <ListInfo
+                      key={t_data.id}
+                      icon={t_data.icon}
+                      transferAccount={t_data.transferAccount}
+                      transferAction={t_data.transferAction}
+                      add={t_data.add}
+                      amount={t_data.amount.toFixed(2)}
+                      date={t_data.date}
+                    />
+                  );
+                }
+              })}
+            </View>
+          ))}
+        </View>
+      )}
+      {/* July */}
+      {selectedMonth === "JUL 2023" && (
+        <View style={styles.list}>
+          {transactionsMonthsFilters.Jul.map((jul_t_data) => (
+            <View key={jul_t_data.header}>
+              <Text style={styles.dateHeader}>{jul_t_data.header}</Text>
+              {transactionsDataJuly.map((t_data) => {
+                if (t_data.date === jul_t_data.dateKey) {
+                  return (
+                    <ListInfo
+                      key={t_data.id}
+                      icon={t_data.icon}
+                      transferAccount={t_data.transferAccount}
+                      transferAction={t_data.transferAction}
+                      add={t_data.add}
+                      amount={t_data.amount.toFixed(2)}
+                      date={t_data.date}
+                    />
+                  );
+                }
+              })}
+            </View>
+          ))}
+        </View>
+      )}
       {/* Filter transaction data according to months */}
     </View>
   );
 }
+
+const transactionsMonthsFilters = {
+  Sep: [
+    { header: "03 September 2023", dateKey: "03 Sep" },
+    { header: "02 September 2023", dateKey: "02 Sep" },
+    { header: "01 September 2023", dateKey: "01 Sep" },
+  ],
+  Aug: [
+    { header: "31 August 2023", dateKey: "31 Aug" },
+    { header: "25 August 2023", dateKey: "25 Aug" },
+    { header: "18 August 2023", dateKey: "18 Aug" },
+  ],
+  Jul: [
+    { header: "29 July 2023", dateKey: "29 Jul" },
+    { header: "28 July 2023", dateKey: "28 Jul" },
+    { header: "27 July 2023", dateKey: "27 Jul" },
+  ],
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -75,7 +160,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 10,
-    backgroundColor:'none'
+    backgroundColor: "none",
   },
   monthsTab: {
     fontWeight: "bold",
@@ -93,15 +178,15 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     borderRadius: 20,
   },
-  list:{
-    backgroundColor:"none",
-    width:"90%",
-    padding:10
+  list: {
+    backgroundColor: "none",
+    width: "90%",
+    padding: 10,
   },
-  dateHeader:{
+  dateHeader: {
     fontSize: 16,
     color: "#858585",
-    marginTop:13,
-    marginBottom:5
-  }
+    marginTop: 13,
+    marginBottom: 5,
+  },
 });
