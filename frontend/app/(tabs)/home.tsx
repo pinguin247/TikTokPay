@@ -35,6 +35,10 @@ export default function TabOneScreen() {
     navigation.navigate("scanToPay");
   };
 
+  const handleCard = () => {
+    navigation.navigate("card");
+  };
+
   const handleLogout = () => {
     navigation.navigate("login");
   };
@@ -104,6 +108,17 @@ export default function TabOneScreen() {
               />
               <Text style={{ color: "black", fontWeight: "400" }}>
                 Transfer
+              </Text>
+            </View>
+            <View style={{ backgroundColor: "none", alignItems: "center" }}>
+              <IconButton
+                icon="credit-card"
+                onPress={handleCard}
+                color="red"
+                size={32}
+              />
+              <Text style={{ color: "black", fontWeight: "400" }}>
+                Cards
               </Text>
             </View>
           </View>
