@@ -85,16 +85,6 @@ export default function TabLayout() {
           },
           headerTitleAlign: "center",
           headerLeft: () => <GoBackButton />,
-          // headerRight: () => (
-          //   <View style={{ width:50,flexDirection: 'row', marginRight: 15, marginTop: 7, justifyContent:"space-between" }}>
-          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
-          //       <FontAwesome name="search" size={20} color="rgb(102, 102, 102)" />
-          //     </TouchableOpacity>
-          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
-          //       <FontAwesome name="sliders" size={20} color="rgb(102, 102, 102)" />
-          //     </TouchableOpacity>
-          //   </View>
-          // ),
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -120,6 +110,24 @@ export default function TabLayout() {
         name="topup"
         options={{
           title: "Top Up",
+          headerStyle: {
+            backgroundColor: "white", // Change the top bar background color
+            height: 80,
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontSize: 20, // Change the font size
+            color: "black", // Change the text color
+          },
+          headerTitleAlign: "center",
+          headerLeft: () => <GoBackButton />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="scanToPay"
+        options={{
+          title: "Scan QR Code",
           headerStyle: {
             backgroundColor: "white", // Change the top bar background color
             height: 80,

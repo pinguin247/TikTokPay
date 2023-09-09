@@ -32,7 +32,7 @@ export default function TabOneScreen() {
 
   const handleScanPress = () => {
     // Handle button press action here
-    console.log("Scan");
+    navigation.navigate("scanToPay");
   };
 
   const handleLogout = () => {
