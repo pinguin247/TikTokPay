@@ -11,7 +11,7 @@ const data = {
   months: ["AUG 2023", "SEP 2023", "OCT 2023"],
 };
 
-export default function TabTwoScreen() {
+export default function TransactionsScreen() {
   const [selectedMonth, setSelectedMonth] = useState<string>(data.months[0]);
 
   return (
@@ -19,7 +19,7 @@ export default function TabTwoScreen() {
       {/* Months Selector */}
       <View style={styles.monthsTabs}>
         {data.months.map((month) => (
-          <TouchableOpacity onPress={() => setSelectedMonth(month)}>
+          <TouchableOpacity key={month} onPress={() => setSelectedMonth(month)}>
             <Text
               style={[
                 styles.monthsTab,
@@ -42,7 +42,7 @@ export default function TabTwoScreen() {
 
       {/* Filter transaction data according to months */}
 
-      {/* <ListInfo path="app/(tabs)/two.tsx" /> */}
+      {/* <ListInfo path="app/(tabs)/transactions.tsx" /> */}
     </View>
   );
 }
