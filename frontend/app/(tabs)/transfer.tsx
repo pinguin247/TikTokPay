@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import ListInfo from "../../components/ListInfo";
 import { Text, View } from "../../components/Themed";
 import globalStyles from "../../constants/styles";
+import TransferListInfo from "../../components/TransferListInfo";
 
 export default function TransferScreen() {
   return (
@@ -17,6 +18,27 @@ export default function TransferScreen() {
       {/* Transfer to yourself */}
       <View style={styles.transferSection}>
         <Text style={styles.transferSectionHeader}>Transfer to yourself</Text>
+        <View
+          style={styles.transferSectionSeparator}
+          lightColor="#eee"
+          darkColor="rgba(255,255,255,0.1)"
+        />
+
+        {/* Transfer Options */}
+        <TransferListInfo
+          icon="phone-settings"
+          iconColor="#7D1879"
+          iconBgColor="#ECDCEB"
+          label="To your PayNow account"
+          nextScreenName="home"
+        />
+        <TransferListInfo
+          icon="bank"
+          iconColor="#386F3D"
+          iconBgColor="#E1E9E2"
+          label="To your Bank account"
+          nextScreenName="home"
+        />
       </View>
 
       {/* Transfer to other users */}
@@ -28,6 +50,29 @@ export default function TransferScreen() {
           style={styles.transferSectionSeparator}
           lightColor="#eee"
           darkColor="rgba(255,255,255,0.1)"
+        />
+
+        {/* Transfer Options */}
+        <TransferListInfo
+          icon="wallet"
+          iconColor="#397684"
+          iconBgColor="#E1EAED"
+          label="To another TikTokPay wallet"
+          nextScreenName="home"
+        />
+        <TransferListInfo
+          icon="phone-settings"
+          iconColor="#7D1879"
+          iconBgColor="#ECDCEB"
+          label="To another PayNow account"
+          nextScreenName="home"
+        />
+        <TransferListInfo
+          icon="bank"
+          iconColor="#386F3D"
+          iconBgColor="#E1E9E2"
+          label="To another Bank account"
+          nextScreenName="home"
         />
       </View>
 

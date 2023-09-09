@@ -1,7 +1,27 @@
 import { db } from '../utils/firebase';
 import * as admin from 'firebase-admin';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
+
+// Middleware to authenticate users
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).send('Authentication required');
+  }
+
+  const token = authHeader.split('Bearer ')[1];
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+    res.status(403).send('Invalid token');
+  }
+};
+
 
 // Utility function to compute a SHA-256 hash
 const sha256 = (data: string) => {
@@ -66,7 +86,8 @@ export const storeTransaction = async (req: Request, res: Response) => {
 
 export const getTransactions = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user.uid;  // Use the authenticated user's ID
+    //const { userId } = req.params;
 
     // Fetch transactions for the user
     const transactionsSnapshot = await db.collection('transactions').where('userId', '==', userId).get();
