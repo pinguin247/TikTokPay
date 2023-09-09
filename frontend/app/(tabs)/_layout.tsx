@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
+import GoBackButton from "../../components/GoBackButton";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -83,18 +84,7 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("home")}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           // headerRight: () => (
           //   <View style={{ width:50,flexDirection: 'row', marginRight: 15, marginTop: 7, justifyContent:"space-between" }}>
           //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
@@ -122,18 +112,7 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("home")}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -151,18 +130,7 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("home")}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
