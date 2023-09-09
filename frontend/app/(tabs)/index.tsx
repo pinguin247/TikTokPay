@@ -102,9 +102,12 @@ export default function TabOneScreen() {
               View All
             </Link>
           </View>
+         
+          </View> 
           <View style={styles.separator} />
           <ListInfo path="app/(tabs)/two.tsx" />
-        </Card>
+      </Card>
+        
     </View>
   );
 }
