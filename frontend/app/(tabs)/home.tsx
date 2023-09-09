@@ -106,6 +106,17 @@ export default function TabOneScreen() {
                 Transfer
               </Text>
             </View>
+            <View style={{ backgroundColor: "none", alignItems: "center" }}>
+              <IconButton
+                icon="credit-card"
+                onPress={handleTransferPress}
+                color="red"
+                size={32}
+              />
+              <Text style={{ color: "black", fontWeight: "400" }}>
+                Cards
+              </Text>
+            </View>
           </View>
         </Card>
       </ImageBackground>
