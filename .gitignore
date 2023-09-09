@@ -10,4 +10,4 @@ tiktokpay/android/app/build/
 # Backend
 backend/node_modules/
 backend/.env  
-backend\firebase_credentials.json
+backend/firebase_credentials.json
