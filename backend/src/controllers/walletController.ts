@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import * as admin from 'firebase-admin';
-import db from '../utils/firebase';
-import stripe from 'stripe';  // Need to read Stripe doc
+import { db } from '../utils/firebase';
+// import stripe from 'stripe';  // Need to read Stripe doc
 
-const stripeClient = new stripe('YOUR_STRIPE_SECRET_KEY');  // Replace with .env key
+// const stripeClient = new stripe('YOUR_STRIPE_SECRET_KEY');  // Replace with .env key
 
 export const getDebitWalletBalance = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
+  const { userId } = req.params;
   const userRef = db.collection('users').doc(userId);
   
   try {
@@ -15,6 +15,7 @@ export const getDebitWalletBalance = async (req: Request, res: Response) => {
           return res.status(404).json({ message: 'User not found' });
       } else {
           const userData = doc.data();
+          console.log(userData);
           return res.json({ debitBalance: userData?.debitBalance || 0 });
       }
   } catch (error) {
@@ -23,7 +24,7 @@ export const getDebitWalletBalance = async (req: Request, res: Response) => {
 };
 
 export const getCreditWalletBalance = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
+  const { userId } = req.params;
   const userRef = db.collection('users').doc(userId);
 
   try {
@@ -39,86 +40,86 @@ export const getCreditWalletBalance = async (req: Request, res: Response) => {
   }
 };
 
-export const topUpDebitWallet = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
-  const { amount, paymentMethod } = req.body; // 'paymentMethod' can be 'stripe', 'paypal', etc.
+// export const topUpDebitWallet = async (req: Request, res: Response) => {
+//   const userId = req.params.userId;
+//   const { amount, paymentMethod } = req.body; // 'paymentMethod' can be 'stripe', 'paypal', etc.
 
-  if (paymentMethod === 'stripe') {
-      try {
-          // Assume a Stripe token is sent with the request.
-          // Frontend operations to obtain this token.
-          const token = req.body.token; 
-          const charge = await stripeClient.charges.create({
-              amount: amount * 100, // Stripe uses cents as unit
-              currency: 'sgd',
-              description: `Top up for user ${userId}`,
-              source: token
-          });
+//   if (paymentMethod === 'stripe') {
+//       try {
+//           // Assume a Stripe token is sent with the request.
+//           // Frontend operations to obtain this token.
+//           const token = req.body.token; 
+//           const charge = await stripeClient.charges.create({
+//               amount: amount * 100, // Stripe uses cents as unit
+//               currency: 'sgd',
+//               description: `Top up for user ${userId}`,
+//               source: token
+//           });
 
-          if (charge.paid) {
-              const userRef = db.collection('users').doc(userId);
-              const user = await userRef.get();
-              if (user.exists) {
-                  await userRef.update({
-                      debitBalance: admin.firestore.FieldValue.increment(amount)
-                  });
-              }
-              return res.status(200).json({ message: 'Top up successful' });
-          } else {
-              return res.status(400).json({ message: 'Charge unsuccessful' });
-          }
-      } catch (error) {
-          return res.status(500).json({ error: error.message });
-      }
-  }
+//           if (charge.paid) {
+//               const userRef = db.collection('users').doc(userId);
+//               const user = await userRef.get();
+//               if (user.exists) {
+//                   await userRef.update({
+//                       debitBalance: admin.firestore.FieldValue.increment(amount)
+//                   });
+//               }
+//               return res.status(200).json({ message: 'Top up successful' });
+//           } else {
+//               return res.status(400).json({ message: 'Charge unsuccessful' });
+//           }
+//       } catch (error) {
+//           return res.status(500).json({ error: error.message });
+//       }
+//   }
 
-  // Implement logic for PayPal and other payment methods
-};
+//   // Implement logic for PayPal and other payment methods
+// };
 
-export const payOffCreditWalletBalance = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
-  const { amount, paymentMethod } = req.body; 
+// export const payOffCreditWalletBalance = async (req: Request, res: Response) => {
+//   const userId = req.params.userId;
+//   const { amount, paymentMethod } = req.body; 
 
-  try {
-      const userRef = db.collection('users').doc(userId);
-      const user = await userRef.get();
+//   try {
+//       const userRef = db.collection('users').doc(userId);
+//       const user = await userRef.get();
 
-      if (!user.exists) {
-          return res.status(404).json({ message: 'User not found' });
-      }
+//       if (!user.exists) {
+//           return res.status(404).json({ message: 'User not found' });
+//       }
 
-      if (paymentMethod === 'debit') {
-          if (user.data()?.debitBalance < amount) {
-              return res.status(400).json({ message: 'Insufficient debit balance' });
-          }
-          await userRef.update({
-              creditBalance: admin.firestore.FieldValue.increment(-amount),
-              debitBalance: admin.firestore.FieldValue.increment(-amount)
-          });
-      } else if (paymentMethod === 'stripe') {
-        try {
-          // Assume a Stripe token is sent with the request.
-          // Frontend operations to obtain this token.
-          const token = req.body.token; 
-          const charge = await stripeClient.charges.create({
-              amount: amount * 100, // Stripe uses cents as unit
-              currency: 'sgd',
-              description: `Top up for user ${userId}`,
-              source: token
-          });
-        } catch (error) {
-          return res.status(500).json({ error: error.message });
-        }
-          // After successful payment:
-          await userRef.update({
-              creditBalance: admin.firestore.FieldValue.increment(-amount)
-          });
-      }
-      return res.status(200).json({ message: 'Credit balance paid successfully' });
-  } catch (error) {
-      return res.status(500).json({ error: error.message });
-  }
-};
+//       if (paymentMethod === 'debit') {
+//           if (user.data()?.debitBalance < amount) {
+//               return res.status(400).json({ message: 'Insufficient debit balance' });
+//           }
+//           await userRef.update({
+//               creditBalance: admin.firestore.FieldValue.increment(-amount),
+//               debitBalance: admin.firestore.FieldValue.increment(-amount)
+//           });
+//       } else if (paymentMethod === 'stripe') {
+//         try {
+//           // Assume a Stripe token is sent with the request.
+//           // Frontend operations to obtain this token.
+//           const token = req.body.token; 
+//           const charge = await stripeClient.charges.create({
+//               amount: amount * 100, // Stripe uses cents as unit
+//               currency: 'sgd',
+//               description: `Top up for user ${userId}`,
+//               source: token
+//           });
+//         } catch (error) {
+//           return res.status(500).json({ error: error.message });
+//         }
+//           // After successful payment:
+//           await userRef.update({
+//               creditBalance: admin.firestore.FieldValue.increment(-amount)
+//           });
+//       }
+//       return res.status(200).json({ message: 'Credit balance paid successfully' });
+//   } catch (error) {
+//       return res.status(500).json({ error: error.message });
+//   }
+// };
 
 export const internalTransfer = async (req: Request, res: Response) => {
   const { senderId, receiverId, amount } = req.body;
@@ -152,42 +153,42 @@ export const internalTransfer = async (req: Request, res: Response) => {
   }
 };
 
-export const externalTransfer = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
-  const { amount } = req.body;
+// export const externalTransfer = async (req: Request, res: Response) => {
+//   const userId = req.params.userId;
+//   const { amount } = req.body;
 
-  try {
-      const userRef = db.collection('users').doc(userId);
-      const user = await userRef.get();
+//   try {
+//       const userRef = db.collection('users').doc(userId);
+//       const user = await userRef.get();
 
-      if (!user.exists) {
-          return res.status(404).json({ message: 'User not found' });
-      }
+//       if (!user.exists) {
+//           return res.status(404).json({ message: 'User not found' });
+//       }
 
-      if (user.data()?.debitBalance < amount) {
-          return res.status(400).json({ message: 'Insufficient funds' });
-      }
-      // This assumes that the user has a connected and verified Stripe account to receive the payout
-      // Need to check Strip Doc for more details
+//       if (user.data()?.debitBalance < amount) {
+//           return res.status(400).json({ message: 'Insufficient funds' });
+//       }
+//       // This assumes that the user has a connected and verified Stripe account to receive the payout
+//       // Need to check Strip Doc for more details
 
-      const payout = await stripeClient.payouts.create({
-          amount: amount * 100, 
-          currency: 'sgd',
-          // Other necessary details based on the Stripe account linked...
-      });
+//       const payout = await stripeClient.payouts.create({
+//           amount: amount * 100, 
+//           currency: 'sgd',
+//           // Other necessary details based on the Stripe account linked...
+//       });
 
-      if (payout.status === 'succeeded') {
-          await userRef.update({
-              debitBalance: admin.firestore.FieldValue.increment(-amount)
-          });
-          return res.status(200).json({ message: 'External transfer successful' });
-      } else {
-          return res.status(400).json({ message: 'Transfer failed' });
-      }
-  } catch (error) {
-      return res.status(500).json({ error: error.message });
-  }
-};
+//       if (payout.status === 'succeeded') {
+//           await userRef.update({
+//               debitBalance: admin.firestore.FieldValue.increment(-amount)
+//           });
+//           return res.status(200).json({ message: 'External transfer successful' });
+//       } else {
+//           return res.status(400).json({ message: 'Transfer failed' });
+//       }
+//   } catch (error) {
+//       return res.status(500).json({ error: error.message });
+//   }
+// };
 
 // debitpayment for external purchase, using visa/mastercard
 

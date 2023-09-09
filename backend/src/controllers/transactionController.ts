@@ -1,4 +1,4 @@
-import db from '../utils/firebase';
+import { db } from '../utils/firebase';
 import * as admin from 'firebase-admin';
 import { Request, Response } from 'express';
 
