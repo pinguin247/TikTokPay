@@ -32,6 +32,22 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="login"
+        options={{
+          title: "Login",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false, // Hide the header for this screen
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: "Register",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false, // Hide the header for this screen
+        }}
+      />
+      <Tabs.Screen
         name="index"
         options={{
           title: "Home",
