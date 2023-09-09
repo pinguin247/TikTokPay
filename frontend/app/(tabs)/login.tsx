@@ -23,7 +23,7 @@ export default function LoginScreen() {
     // TODO: Call log in api
     const success = true;
     if (success) {
-      navigation.navigate("index");
+      navigation.navigate("home");
     }
   };
 
