@@ -65,6 +65,7 @@ export default function TabOneScreen() {
             </View>
           </View>
           <View style={styles.separator} />
+          <ListInfo path="app/(tabs)/two.tsx" />
         </Card>
     </View>
   );
