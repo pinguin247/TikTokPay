@@ -13,7 +13,7 @@ export default function TransferScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <ListInfo path="app/(tabs)/transactions.tsx" />
+      {/* <ListInfo path="app/(tabs)/transactions.tsx" /> */}
     </View>
   );
 }

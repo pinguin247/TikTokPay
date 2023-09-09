@@ -105,7 +105,11 @@ export default function TabOneScreen() {
          
           </View> 
           <View style={styles.separator} />
-          <ListInfo path="app/(tabs)/two.tsx" />
+          <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="200.00" date="03 Sep" />
+          <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="03 Sep" />
+          <ListInfo icon="data-matrix-scan" transferAccount="To Chicken Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="03 Sep" />
+          <ListInfo icon="account-arrow-left" transferAccount="From Sarah" transferAction="Transfer" add={true} amount="50.00" date="02 Sep" />
+          <ListInfo icon="data-matrix-scan" transferAccount="To Duck Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="02 Sep" />
       </Card>
         
     </View>
