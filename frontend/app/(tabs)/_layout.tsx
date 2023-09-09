@@ -134,6 +134,24 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="card"
+        options={{
+          title: "Card",
+          headerStyle: {
+            backgroundColor: "white", // Change the top bar background color
+            height: 80,
+            borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            fontSize: 20, // Change the font size
+            color: "black", // Change the text color
+          },
+          headerTitleAlign: "center",
+          headerLeft: () => <GoBackButton />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }

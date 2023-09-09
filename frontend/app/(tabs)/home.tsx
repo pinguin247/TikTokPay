@@ -35,6 +35,10 @@ export default function TabOneScreen() {
     console.log("Scan");
   };
 
+  const handleCard = () => {
+    navigation.navigate("card");
+  };
+
   const handleLogout = () => {
     navigation.navigate("login");
   };
@@ -109,7 +113,7 @@ export default function TabOneScreen() {
             <View style={{ backgroundColor: "none", alignItems: "center" }}>
               <IconButton
                 icon="credit-card"
-                onPress={handleTransferPress}
+                onPress={handleCard}
                 color="red"
                 size={32}
               />
