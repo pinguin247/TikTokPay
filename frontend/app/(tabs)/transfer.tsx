@@ -13,6 +13,8 @@ export default function TransferScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+<<<<<<< HEAD
+=======
 
       {/* Transfer to yourself */}
       <View style={styles.transferSection}>
@@ -36,6 +38,7 @@ export default function TransferScreen() {
         />
       </View>
 
+>>>>>>> 685afb1e6a010f8324dd2f37bfbee552b370ef93
       {/* <ListInfo path="app/(tabs)/transactions.tsx" /> */}
     </View>
   );
