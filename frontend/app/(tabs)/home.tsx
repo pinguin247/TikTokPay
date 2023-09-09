@@ -14,6 +14,7 @@ import * as React from "react";
 import { Link } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { homeTransactionsData } from "../../constants/mockData";
 
 export default function TabOneScreen() {
   const navigation = useNavigation();
@@ -120,14 +121,19 @@ export default function TabOneScreen() {
               View All
             </Link>
           </View>
-         
-          </View> 
-          <View style={styles.separator} />
-          <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="200.00" date="03 Sep" />
-          <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="03 Sep" />
-          <ListInfo icon="data-matrix-scan" transferAccount="To Chicken Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="03 Sep" />
-          <ListInfo icon="account-arrow-left" transferAccount="From Sarah" transferAction="Transfer" add={true} amount="50.00" date="02 Sep" />
-          <ListInfo icon="data-matrix-scan" transferAccount="To Duck Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="02 Sep" />
+        </View>
+        <View style={styles.separator} />
+        {homeTransactionsData.slice(0, 6).map((transaction) => (
+          <ListInfo
+            key={transaction.id}
+            icon={transaction.icon}
+            transferAccount={transaction.transferAccount}
+            transferAction={transaction.transferAction}
+            add={transaction.add}
+            amount={transaction.amount.toFixed(2)}
+            date={transaction.date}
+          />
+        ))}
       </Card>
     </View>
   );
