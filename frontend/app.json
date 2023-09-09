@@ -28,10 +28,17 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png",
-      "build": { "babel": { "include": [ "@ui-kitten/components" ] } }
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "react-native-vision-camera"
     ],
     "experiments": {
       "typedRoutes": true

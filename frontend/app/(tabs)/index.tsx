@@ -17,12 +17,12 @@ export default function TabOneScreen() {
   const navigation = useNavigation();
   const handleTransferPress = () => {
     // Handle button press action here
-    navigation.navigate("transfer");
+    navigation.navigate('transfer');
   };
 
   const handleTopUpPress = () => {
     // Handle button press action here
-    navigation.navigate("topup");
+    navigation.navigate('topup');
   };
 
   const handleScanPress = () => {
@@ -88,6 +88,7 @@ export default function TabOneScreen() {
             </View>
           </View>
         </Card>
+
       </ImageBackground>
       <Card style={styles.transactionscard}>
         <View
@@ -101,72 +102,75 @@ export default function TabOneScreen() {
               View All
             </Link>
           </View>
-        </View>
-        <View style={styles.separator} />
+         
+          </View> 
+          <View style={styles.separator} />
+          <ListInfo path="app/(tabs)/two.tsx" />
       </Card>
+        
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundimage: {
-    width: "100%",
-    height: "78%",
+  backgroundimage:{
+    width:'100%',
+    height:'78%',
   },
   title: {
-    color: "#000", // Color in React Native is specified using a string, e.g., 'black' or '#000'
+    color: '#000', // Color in React Native is specified using a string, e.g., 'black' or '#000'
     fontSize: 45, // Font size is in numeric values, not pixels
-    fontWeight: "700", // Font weight can be specified as 'normal', 'bold', etc.
+    fontWeight: '700', // Font weight can be specified as 'normal', 'bold', etc.
     lineHeight: undefined, // Line height is set automatically based on font size
   },
   headerSection: {
-    marginTop: 100,
-    paddingLeft: 20,
-    backgroundColor: "none",
+    marginTop:100,
+    paddingLeft:20,
+    backgroundColor:'none'
   },
-  card: {
+  card:{
     marginTop: 40,
-    width: "90%",
-    alignSelf: "center",
+    width: '90%',
+    alignSelf: 'center',
     flex: 0.25,
-    justifyContent: "center",
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
+    justifyContent:"center",
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 3,
-    paddingBottom: 6,
+    paddingBottom:6
   },
   iconRow: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignContent: "center",
-    backgroundColor: "none",
-    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignContent:'center',
+    backgroundColor:'none',
+    flex:1
   },
-  transactionscard: {
+  transactionscard:{
     top: 375,
-    position: "absolute",
-    width: "90%",
-    alignSelf: "center",
-    height: "50%",
-    padding: 15,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
+    position: 'absolute',
+    width: '90%',
+    alignSelf: 'center',
+    height:'50%',
+    padding:15,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 3,
   },
-  cardHeader: {
-    color: "#000", // Color in React Native is specified using a string, e.g., 'black' or '#000'
+  cardHeader:{
+    color: '#000', // Color in React Native is specified using a string, e.g., 'black' or '#000'
     fontSize: 22, // Font size is in numeric values, not pixels
     lineHeight: undefined, // Line height is set automatically based on font size
   },
   separator: {
-    marginTop: 15,
+    marginTop:15,
     height: 1,
-    width: "100%",
-    backgroundColor: "rgba(57, 118, 132, 0.5)",
+    width: '100%',
+    backgroundColor:"rgba(57, 118, 132, 0.5)"
   },
-  linkText: {
-    color: "#FA6B99",
-  },
+  linkText:{
+    color:"#FA6B99"
+  }
 });
