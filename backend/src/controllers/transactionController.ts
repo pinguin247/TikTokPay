@@ -2,9 +2,10 @@ import { db } from '../utils/firebase';
 import * as admin from 'firebase-admin';
 import { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
+import { IGetUserAuthInfoRequest } from "../../custom"
 
 // Middleware to authenticate users
-export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+export const authenticate = async (req: IGetUserAuthInfoRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -84,7 +85,7 @@ export const storeTransaction = async (req: Request, res: Response) => {
   }
 };
 
-export const getTransactions = async (req: Request, res: Response) => {
+export const getTransactions = async (req: IGetUserAuthInfoRequest, res: Response) => {
   try {
     const userId = req.user.uid;  // Use the authenticated user's ID
     //const { userId } = req.params;
