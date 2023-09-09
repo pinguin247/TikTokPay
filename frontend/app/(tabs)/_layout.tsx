@@ -85,7 +85,7 @@ export default function TabLayout() {
           headerTitleAlign: "center",
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("home")}
               style={{ marginLeft: 10, marginTop: 7 }}
             >
               <FontAwesome
@@ -97,10 +97,10 @@ export default function TabLayout() {
           ),
           // headerRight: () => (
           //   <View style={{ width:50,flexDirection: 'row', marginRight: 15, marginTop: 7, justifyContent:"space-between" }}>
-          //     <TouchableOpacity onPress={() => navigation.goBack()}>
+          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
           //       <FontAwesome name="search" size={20} color="rgb(102, 102, 102)" />
           //     </TouchableOpacity>
-          //     <TouchableOpacity onPress={() => navigation.goBack()}>
+          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
           //       <FontAwesome name="sliders" size={20} color="rgb(102, 102, 102)" />
           //     </TouchableOpacity>
           //   </View>
@@ -124,7 +124,7 @@ export default function TabLayout() {
           headerTitleAlign: "center",
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("home")}
               style={{ marginLeft: 10, marginTop: 7 }}
             >
               <FontAwesome
@@ -153,7 +153,7 @@ export default function TabLayout() {
           headerTitleAlign: "center",
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("home")}
               style={{ marginLeft: 10, marginTop: 7 }}
             >
               <FontAwesome
