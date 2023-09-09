@@ -33,16 +33,28 @@ export default function TransactionsScreen() {
             )}
           </TouchableOpacity>
         ))}
+        
       </View>
+      <View></View>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-
+    <View style={styles.list}>
+      <Text style={styles.dateHeader}>03 September 2023</Text>
+        <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="200.00" date="03 Sep" />
+        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="03 Sep" />
+        <ListInfo icon="data-matrix-scan" transferAccount="To Chicken Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="03 Sep" />
+        <Text style={styles.dateHeader}>02 September 2023</Text>
+        <ListInfo icon="account-arrow-left" transferAccount="From Sarah" transferAction="Transfer" add={true} amount="50.00" date="02 Sep" />
+        <ListInfo icon="data-matrix-scan" transferAccount="To Duck Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="02 Sep" />
+        <Text style={styles.dateHeader}>01 September 2023</Text>
+        <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="100.00" date="01 Sep" />
+        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="01 Sep" />
+        <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="01 Sep" />
+    </View>
       {/* Filter transaction data according to months */}
-
-      {/* <ListInfo path="app/(tabs)/transactions.tsx" /> */}
     </View>
   );
 }
@@ -63,6 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 10,
+    backgroundColor:'none'
   },
   monthsTab: {
     fontWeight: "bold",
@@ -80,4 +93,15 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     borderRadius: 20,
   },
+  list:{
+    backgroundColor:"none",
+    width:"90%",
+    padding:10
+  },
+  dateHeader:{
+    fontSize: 16,
+    color: "#858585",
+    marginTop:13,
+    marginBottom:5
+  }
 });

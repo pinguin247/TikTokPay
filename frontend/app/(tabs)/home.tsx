@@ -3,6 +3,7 @@ import {
   Image,
   ImageBackground,
   ImageBackgroundBase,
+  TouchableOpacity,
 } from "react-native";
 import ListInfo from "../../components/ListInfo";
 import { Text, View } from "../../components/Themed";
@@ -12,9 +13,12 @@ import IconButton from "../../components/IconButton";
 import * as React from "react";
 import { Link } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function TabOneScreen() {
   const navigation = useNavigation();
+  const [walletValue, setWalletValue] = useState<number>(245.0);
+
   const handleTransferPress = () => {
     // Handle button press action here
     navigation.navigate("transfer");
@@ -30,18 +34,33 @@ export default function TabOneScreen() {
     console.log("Scan");
   };
 
+  const handleLogout = () => {
+    navigation.navigate("login");
+  };
+
   return (
     <View style={globalStyles.container}>
       <ImageBackground
         style={styles.backgroundimage}
         source={require("../../assets/images/background.png")}
       >
+        <TouchableOpacity
+          style={{
+            margin: 24,
+            alignSelf: "flex-end",
+            position: "absolute",
+          }}
+          onPress={handleLogout}
+        >
+          <Text style={{ color: "#222222" }}>Logout</Text>
+        </TouchableOpacity>
+
         <View style={{ position: "absolute", marginLeft: 220, marginTop: 60 }}>
           <ImageBackground source={require("../../assets/images/card.png")} />
         </View>
         <View style={styles.headerSection}>
           <Image source={require("../../assets/images/Logo.png")} />
-          <Text style={styles.title}>$245.00</Text>
+          <Text style={styles.title}>${walletValue.toFixed(2)}</Text>
         </View>
         <Card style={styles.card}>
           <View style={styles.iconRow}>
@@ -101,8 +120,14 @@ export default function TabOneScreen() {
               View All
             </Link>
           </View>
-        </View>
-        <View style={styles.separator} />
+         
+          </View> 
+          <View style={styles.separator} />
+          <ListInfo icon="wallet-plus" transferAccount="From Bank" transferAction="Top Up" add={true} amount="200.00" date="03 Sep" />
+          <ListInfo icon="account-arrow-right" transferAccount="To Sarah" transferAction="Transfer" add={false} amount="50.00" date="03 Sep" />
+          <ListInfo icon="data-matrix-scan" transferAccount="To Chicken Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="03 Sep" />
+          <ListInfo icon="account-arrow-left" transferAccount="From Sarah" transferAction="Transfer" add={true} amount="50.00" date="02 Sep" />
+          <ListInfo icon="data-matrix-scan" transferAccount="To Duck Rice Stall" transferAction="Scan/Pay" add={false} amount="3.50" date="02 Sep" />
       </Card>
     </View>
   );

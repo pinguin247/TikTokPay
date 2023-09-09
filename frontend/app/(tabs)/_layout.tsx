@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
+import GoBackButton from "../../components/GoBackButton";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -32,7 +33,23 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="login"
+        options={{
+          title: "Login",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false, // Hide the header for this screen
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: "Register",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false, // Hide the header for this screen
+        }}
+      />
+      <Tabs.Screen
+        name="home"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -67,24 +84,13 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           // headerRight: () => (
           //   <View style={{ width:50,flexDirection: 'row', marginRight: 15, marginTop: 7, justifyContent:"space-between" }}>
-          //     <TouchableOpacity onPress={() => navigation.goBack()}>
+          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
           //       <FontAwesome name="search" size={20} color="rgb(102, 102, 102)" />
           //     </TouchableOpacity>
-          //     <TouchableOpacity onPress={() => navigation.goBack()}>
+          //     <TouchableOpacity onPress={() => navigation.navigate("home")}>
           //       <FontAwesome name="sliders" size={20} color="rgb(102, 102, 102)" />
           //     </TouchableOpacity>
           //   </View>
@@ -106,18 +112,7 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
@@ -135,18 +130,7 @@ export default function TabLayout() {
             color: "black", // Change the text color
           },
           headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{ marginLeft: 10, marginTop: 7 }}
-            >
-              <FontAwesome
-                name="chevron-left"
-                size={20}
-                color="rgb(57, 118, 132)"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <GoBackButton />,
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
